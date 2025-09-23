@@ -16,7 +16,6 @@
       --brand2:#60a5fa;       /* blue accent */
       --border:#1b2438;       /* borders */
       --shadow:0 12px 30px rgba(0,0,0,.35);
-      --dot:url('data:image/svg+xml;utf8,<svg xmlns="http://www.w3.org/2000/svg" width="6" height="6" viewBox="0 0 6 6"><circle cx="3" cy="3" r="1" fill="%239aa7bd" opacity="0.5"/></svg>')
     }
     *{box-sizing:border-box}
     html,body{margin:0;padding:0;background:var(--bg);color:var(--text);font-family:Inter,system-ui,-apple-system,"Segoe UI",Roboto,"Helvetica Neue",Arial}
@@ -60,6 +59,20 @@
     .icon-row a:hover{transform:translateY(-2px);box-shadow:0 8px 18px rgba(0,0,0,.35);background:linear-gradient(135deg,var(--brand) 0%, var(--brand2) 100%)}
     .icon{filter:invert(92%);width:22px;height:22px}
 
+    /* === Right-aligned year rows (Awards + Experience) === */
+    .award-row{
+      display:flex;
+      justify-content:space-between;
+      padding:6px 0;
+      border-bottom:1px dashed var(--border);
+      gap:16px;
+    }
+    .award-row .year{
+      color:var(--muted);
+      margin-left:20px;
+      white-space:nowrap;
+    }
+
     footer{text-align:center;color:var(--muted);padding:20px 0}
   </style>
 </head>
@@ -75,7 +88,7 @@
         <a href="#experience">Experience</a>
         <a href="#awards">Awards</a>
         <a href="#contact">Contact</a>
-        <a href="assets/TAWSIF-RESUME.pdf" target="_blank">Resume</a>
+        <a href="assets/TAWSIF-RESUME.pdf" target="_blank" rel="noopener">Resume</a>
       </nav>
     </aside>
 
@@ -86,12 +99,12 @@
         <h1>Tawsif Nadif</h1>
         <div class="row muted">Senior, Computer Science @ Michigan State University • PhD Candidate</div>
         <div class="hr"></div>
-        <p>Computer Science senior at Michigan State University with a passion for building intelligent systems that align with human preferences; experienced in deep learning, computer vision, and embedding comparative human aesthetics into generative models; bridging research and real‑world impact.<!-- from resume --> </p>
+        <p>Computer Science senior at Michigan State University with a passion for building intelligent systems that align with human preferences; experienced in deep learning, computer vision, and embedding comparative human aesthetics into generative models; bridging research and real-world impact.</p>
         <div class="row">
           <span class="tag">Machine Learning</span>
           <span class="tag">Computer Vision</span>
           <span class="tag">Robotics</span>
-          <span class="tag">High‑Performance Computing</span>
+          <span class="tag">High-Performance Computing</span>
           <span class="tag">Python · C/C++ · PyTorch</span>
         </div>
       </section>
@@ -100,7 +113,7 @@
       <section id="research" class="card">
         <h2>Research Interests</h2>
         <div class="hr"></div>
-        <p>Scalable training and efficient inference; GNSS‑guided autonomy and control; human‑in‑the‑loop AI and preference alignment; aesthetic guidance for vision models; trustworthy ML and robust perception for field robotics.</p>
+        <p>Scalable training and efficient inference; GNSS-guided autonomy and control; human-in-the-loop AI and preference alignment; aesthetic guidance for vision models; trustworthy ML and robust perception for field robotics.</p>
       </section>
 
       <!-- Projects -->
@@ -109,19 +122,19 @@
         <div class="hr"></div>
         <div class="grid grid-2">
           <div class="item">
-            <h3>Automated Tractor: Auto‑Steering & Crop Row Detection</h3>
+            <h3>Automated Tractor: Auto-Steering & Crop Row Detection</h3>
             <div class="meta">Research Project · Mar 2025 – Present</div>
-            <p>Built auto‑steer with RTK GNSS, IMU, Teensy, and Cytron driver; developed crop‑row detection with CNNs; integrated sensing, vision, and control on a custom PCB for precision agriculture.</p>
+            <p>Built auto-steer with RTK GNSS, IMU, Teensy, and Cytron driver; developed crop-row detection with CNNs; integrated sensing, vision, and control on a custom PCB for precision agriculture.</p>
           </div>
           <div class="item">
             <h3>Sparty’s Boots</h3>
             <div class="meta">Course Project · Aug 2024 – Dec 2024</div>
-            <p>2D puzzle game in C++/wxWidgets: logic‑gate mechanics, sensor inputs, and conveyor‑based interactions with custom rendering and timeline.</p>
+            <p>2D puzzle game in C++/wxWidgets: logic-gate mechanics, sensor inputs, and conveyor-based interactions with custom rendering and timeline.</p>
           </div>
           <div class="item">
             <h3>Integrating Human Aesthetics into Vision Models</h3>
             <div class="meta">Course Project · Jan 2025 – May 2025</div>
-            <p>Comparative preference learning pipeline; LoRA‑tuned diffusion with VLM‑guided prompts to align outputs with human aesthetic judgments.</p>
+            <p>Comparative preference learning pipeline; LoRA-tuned diffusion with VLM-guided prompts to align outputs with human aesthetic judgments.</p>
           </div>
           <div class="item">
             <h3>Website Defacement via ARP Poisoning & DNS Spoofing</h3>
@@ -136,28 +149,58 @@
         </div>
       </section>
 
-      <!-- Experience -->
+      <!-- Experience (dates right-aligned like Awards) -->
       <section id="experience" class="card">
         <h2>Experience</h2>
         <div class="hr"></div>
-        <ul>
-          <li><strong>Research Assistant</strong>, Smart Sensing Lab – MSU (Mar 2025 – Present): Autonomous systems and embedded hardware integration; system‑level design and field testing for robotics with Dr. Daniel Morris.</li>
-          <li><strong>Teaching Assistant</strong>, MTH 314 – Matrix Algebra (Aug 2024 – Present): Led sessions and help room; Python‑based computation for linear algebra applications.</li>
-          <li><strong>Teaching Assistant</strong>, CSE 102 (Aug 2023 – May 2025): Weekly Python labs for ~30 students; debugging practice and tailored instruction improving outcomes.</li>
-          <li><strong>Teaching Assistant</strong>, MTH 103 – College Algebra (Aug 2025 – Present): Problem‑solving sessions and individualized guidance.</li>
-          <li><strong>Resident Assistant</strong>, MSU (Aug 2025 – Present): Mentored 30+ residents; programs for community building; policy and safety support.</li>
-        </ul>
+
+        <div class="award-row">
+          <span><strong>Research Assistant</strong>, Smart Sensing Lab – MSU</span>
+          <span class="year">Mar 2025 – Present</span>
+        </div>
+        <p class="muted">Autonomous systems and embedded hardware integration; system-level design and field testing for robotics with Dr. Daniel Morris.</p>
+
+        <div class="award-row">
+          <span><strong>Teaching Assistant</strong>, MTH 314 – Matrix Algebra</span>
+          <span class="year">Aug 2024 – Present</span>
+        </div>
+        <p class="muted">Led sessions and help room; Python-based computation for linear algebra applications.</p>
+
+        <div class="award-row">
+          <span><strong>Teaching Assistant</strong>, CSE 102</span>
+          <span class="year">Aug 2023 – May 2025</span>
+        </div>
+        <p class="muted">Weekly Python labs for ~30 students; debugging practice and tailored instruction improving outcomes.</p>
+
+        <div class="award-row">
+          <span><strong>Teaching Assistant</strong>, MTH 103 – College Algebra</span>
+          <span class="year">Aug 2025 – Present</span>
+        </div>
+        <p class="muted">Problem-solving sessions and individualized guidance.</p>
+
+        <div class="award-row">
+          <span><strong>Resident Assistant</strong>, MSU</span>
+          <span class="year">Aug 2025 – Present</span>
+        </div>
+        <p class="muted">Mentored 30+ residents; programs for community building; policy and safety support.</p>
       </section>
 
       <!-- Awards -->
       <section id="awards" class="card">
         <h2>Awards & Honors</h2>
         <div class="hr"></div>
-        <ul>
-          <li>#YouAreWelcomeHere Scholarship (2022)</li>
-          <li>Presidential Study Abroad Scholarship (2022)</li>
-          <li>Dean’s List – All Semesters</li>
-        </ul>
+        <div class="award-row">
+          <span>#YouAreWelcomeHere Scholarship</span>
+          <span class="year">2022</span>
+        </div>
+        <div class="award-row">
+          <span>Presidential Study Abroad Scholarship</span>
+          <span class="year">2022</span>
+        </div>
+        <div class="award-row">
+          <span>Dean’s List – All Semesters</span>
+          <span class="year">2022–Present</span>
+        </div>
       </section>
 
       <!-- Contact -->
@@ -179,6 +222,8 @@
     </main>
   </div>
 
-  <script>document.getElementById('year').textContent=new Date().getFullYear()</script>
+  <script>
+    document.getElementById('year').textContent = new Date().getFullYear();
+  </script>
 </body>
 </html>
