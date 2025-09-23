@@ -1,66 +1,169 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-  <meta charset="UTF-8">
-  <title>Tawsif Nadif | GitHub.io</title>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>Your Name – Portfolio</title>
   <style>
-    body {
-      margin: 0;
-      font-family: 'Courier New', monospace;
-      background: #121212;
-      color: #e0e0e0;
+    :root {
+      --bg: #0f172a;           /* slate-900 */
+      --panel: #111827;        /* gray-900 */
+      --text: #e5e7eb;         /* gray-200 */
+      --muted: #94a3b8;        /* slate-400 */
+      --brand: #22d3ee;        /* cyan-400 */
+      --brand-2: #60a5fa;      /* blue-400 */
+      --card: #0b1220;         /* custom deep */
+      --border: #1f2937;       /* gray-800 */
+      --shadow: 0 10px 30px rgba(0,0,0,.35);
     }
-    header {
-      text-align: center;
-      padding: 50px 20px;
-    }
-    header h1 { font-size: 2.5em; color: #00ffcc; }
-    header p { color: #bbb; }
-    section {
-      max-width: 800px;
-      margin: 40px auto;
-      padding: 0 20px;
-    }
-    h2 { color: #00ffcc; }
-    a { color: #00ffcc; text-decoration: none; }
+    * { box-sizing: border-box; }
+    html, body { margin: 0; padding: 0; background: var(--bg); color: var(--text); font-family: system-ui, -apple-system, Segoe UI, Roboto, Inter, "Helvetica Neue", Arial, "Noto Sans", "Apple Color Emoji", "Segoe UI Emoji"; }
+    a { color: var(--brand); text-decoration: none; }
     a:hover { text-decoration: underline; }
-    footer {
-      text-align: center;
-      padding: 20px;
-      color: #666;
-      border-top: 1px solid #333;
-    }
+    .wrap { max-width: 980px; margin: 0 auto; padding: 24px; }
+
+    /* Hero */
+    .hero { display: grid; grid-template-columns: 1fr; gap: 24px; align-items: center; padding: 56px 0 28px; }
+    @media (min-width: 860px){ .hero { grid-template-columns: 1.2fr .8fr; } }
+    .hero h1 { font-size: clamp(28px, 4vw, 48px); line-height: 1.1; margin: 0 0 8px; }
+    .hero p.role { color: var(--muted); margin: 6px 0 16px; }
+    .tags { display: flex; flex-wrap: wrap; gap: 8px; margin: 16px 0 0; }
+    .tag { border: 1px solid var(--border); color: var(--muted); padding: 6px 10px; border-radius: 999px; font-size: 13px; background: linear-gradient(180deg, #0b1426 0%, #0a1020 100%); }
+    .headshot { width: 180px; height: 180px; border-radius: 20px; background: #0a1020; border: 1px solid var(--border); box-shadow: var(--shadow); object-fit: cover; }
+    .actions { display: flex; gap: 12px; margin-top: 18px; }
+    .btn { display: inline-block; padding: 10px 14px; border-radius: 10px; border: 1px solid var(--border); background: #0b1426; color: var(--text); box-shadow: var(--shadow); }
+    .btn.primary { background: linear-gradient(135deg, var(--brand) 0%, var(--brand-2) 100%); color: #001018; font-weight: 600; border: none; }
+
+    /* Sections */
+    section { margin: 28px 0 18px; }
+    .section-card { background: var(--card); border: 1px solid var(--border); border-radius: 16px; padding: 22px; box-shadow: var(--shadow); }
+    h2 { font-size: 22px; margin: 0 0 14px; color: #c7d2fe; }
+    .grid { display: grid; grid-template-columns: 1fr; gap: 14px; }
+    @media (min-width: 860px){ .grid-2 { grid-template-columns: 1fr 1fr; } }
+
+    .item { padding: 14px; border: 1px solid var(--border); border-radius: 12px; background: linear-gradient(180deg, rgba(255,255,255,.02), rgba(255,255,255,.0)); }
+    .item h3 { margin: 0 0 6px; font-size: 18px; }
+    .meta { color: var(--muted); font-size: 14px; }
+
+    footer { text-align: center; color: var(--muted); padding: 40px 0 20px; font-size: 14px; }
   </style>
 </head>
 <body>
-  <header>
-    <h1>Tawsif Nadif</h1>
-    <p>Senior in Computer Science | PhD Candidate</p>
-  </header>
+  <div class="wrap">
+    <!-- HERO / INTRO -->
+    <div class="hero">
+      <div>
+        <h1>Your Name</h1>
+        <p class="role">Senior, Computer Science @ Your University • PhD Applicant (Fall 2026)</p>
+        <p>Short bio goes here. One or two lines about your research interests (e.g., machine learning, HPC, robotics) and what you're working on now.</p>
+        <div class="tags">
+          <span class="tag">Machine Learning</span>
+          <span class="tag">HPC</span>
+          <span class="tag">Robotics</span>
+          <span class="tag">Vision</span>
+        </div>
+        <div class="actions">
+          <a class="btn primary" href="#projects">See Projects</a>
+          <a class="btn" href="assets/CV.pdf" target="_blank">Download CV</a>
+          <a class="btn" href="mailto:you@example.com">Email</a>
+        </div>
+      </div>
+      <div style="display:flex; justify-content:center;">
+        <!-- Replace src with your headshot file path or remove img if not ready -->
+        <img class="headshot" src="assets/headshot.jpg" alt="Headshot" />
+      </div>
+    </div>
 
-  <section>
-    <h2>About</h2>
-    <p>I’m passionate about machine learning, AI systems, and research at the intersection of 
-    computing and real-world applications like robotics and agriculture.</p>
-  </section>
+    <!-- RESEARCH INTERESTS -->
+    <section id="interests">
+      <div class="section-card">
+        <h2>Research Interests</h2>
+        <p>Brief list: scalable training, efficient inference, GNSS-guided autonomy, human-in-the-loop AI, trustworthy ML.</p>
+      </div>
+    </section>
 
-  <section>
-    <h2>Projects</h2>
-    <ul>
-      <li>Automated Tractor Guidance with GNSS & Jetson</li>
-      <li>Machine Learning Model Optimization</li>
-      <li>Interactive C++ Simulation Games</li>
-    </ul>
-  </section>
+    <!-- PUBLICATIONS (add links if any; hide section if none) -->
+    <section id="publications">
+      <div class="section-card">
+        <h2>Publications & Preprints</h2>
+        <div class="grid">
+          <div class="item">
+            <h3>[Title of Paper]</h3>
+            <div class="meta">Author One, <strong>Your Name</strong>, Author Three • Venue/Year</div>
+            <div><a href="#">PDF</a> · <a href="#">Code</a> · <a href="#">BibTeX</a></div>
+          </div>
+          <!-- Duplicate .item blocks per paper -->
+        </div>
+      </div>
+    </section>
 
-  <section>
-    <h2>Contact</h2>
-    <p>Email: <a href="mailto:tawsif@example.com">tawsif@example.com</a></p>
-    <p>GitHub: <a href="https://github.com/tawsifnadif">github.com/tawsifnadif</a></p>
-  </section>
+    <!-- PROJECTS -->
+    <section id="projects">
+      <div class="section-card">
+        <h2>Selected Projects</h2>
+        <div class="grid grid-2">
+          <div class="item">
+            <h3>Automated Tractor Autosteer</h3>
+            <div class="meta">GNSS (ZED‑F9P), Jetson Orin Nano, Teensy, AgOpenGPS</div>
+            <p>Closed-loop auto‑steering with RTK GNSS, IMU fusion, and Pure Pursuit; field‑tested on MSU farm.</p>
+            <div><a href="#">Repo</a> · <a href="#">Demo</a></div>
+          </div>
+          <div class="item">
+            <h3>Sparty’s Boots</h3>
+            <div class="meta">C++/wxWidgets, logic gates, puzzle gameplay</div>
+            <p>Designed gate‑based levels with sensor inputs and event‑driven mechanics; custom rendering and timeline.</p>
+          </div>
+          <div class="item">
+            <h3>Aesthetic Guidance for Vision Models</h3>
+            <div class="meta">LoRA, diffusion, CLIP</div>
+            <p>Explored human‑in‑the‑loop scoring to nudge generative models toward aesthetic preferences.</p>
+          </div>
+          <div class="item">
+            <h3>HPC for ML</h3>
+            <div class="meta">CUDA, profiling, mixed precision</div>
+            <p>Benchmarked training pipelines; reduced wall‑clock by 35% via kernel fusion and data pipeline tuning.</p>
+          </div>
+        </div>
+      </div>
+    </section>
 
-  <footer>
-    <p>© 2025 Tawsif Nadif</p>
-  </footer>
+    <!-- TEACHING / SERVICE -->
+    <section id="teaching">
+      <div class="section-card">
+        <h2>Teaching & Service</h2>
+        <ul>
+          <li>Undergraduate Learning Assistant / TA – MTH 314, CSE 102, EGR 100</li>
+          <li>Resident Assistant & Orientation Leader – community building, peer mentoring</li>
+        </ul>
+      </div>
+    </section>
+
+    <!-- AWARDS -->
+    <section id="awards">
+      <div class="section-card">
+        <h2>Awards & Honors</h2>
+        <ul>
+          <li>Dean’s List (multiple terms)</li>
+          <li>[Scholarship or Competition], Year</li>
+        </ul>
+      </div>
+    </section>
+
+    <!-- CONTACT -->
+    <section id="contact">
+      <div class="section-card">
+        <h2>Contact</h2>
+        <p>Email: <a href="mailto:you@example.com">you@example.com</a> · GitHub: <a href="https://github.com/yourusername">github.com/yourusername</a> · LinkedIn: <a href="#">linkedin.com/in/yourprofile</a></p>
+      </div>
+    </section>
+
+    <footer>
+      © <span id="year"></span> Your Name · Built with GitHub Pages
+    </footer>
+  </div>
+
+  <script>
+    document.getElementById('year').textContent = new Date().getFullYear();
+  </script>
 </body>
 </html>
