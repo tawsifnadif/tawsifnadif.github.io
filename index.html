@@ -2,37 +2,31 @@
 <html lang="en">
 <head>
   <meta charset="UTF-8">
-  <title>Tawsif Nadif | GitHub Pages</title>
+  <title>Tawsif Nadif | Portfolio</title>
   <style>
     body {
-      font-family: Arial, sans-serif;
+      font-family: 'Segoe UI', sans-serif;
       margin: 0;
-      padding: 0;
-      line-height: 1.6;
-      background: #f9f9f9;
+      background: #f0f2f5;
       color: #333;
     }
     header {
-      background: #222;
-      color: #fff;
+      background: linear-gradient(to right, #007acc, #00b4d8);
+      color: white;
       text-align: center;
-      padding: 40px 20px;
+      padding: 60px 20px;
     }
-    header h1 { margin: 0; font-size: 2.5em; }
+    header h1 { font-size: 2.5em; margin: 0; }
     header p { font-size: 1.2em; }
-    section {
-      max-width: 800px;
-      margin: 40px auto;
-      padding: 0 20px;
+    .container { max-width: 1000px; margin: auto; padding: 30px; }
+    .card {
+      background: white;
+      border-radius: 10px;
+      padding: 20px;
+      margin-bottom: 20px;
+      box-shadow: 0 4px 6px rgba(0,0,0,0.1);
     }
-    h2 { color: #444; border-bottom: 2px solid #ddd; padding-bottom: 5px; }
-    footer {
-      text-align: center;
-      background: #222;
-      color: #fff;
-      padding: 15px;
-      margin-top: 40px;
-    }
+    h2 { margin-top: 0; color: #007acc; }
     a { color: #007acc; text-decoration: none; }
     a:hover { text-decoration: underline; }
   </style>
@@ -40,32 +34,31 @@
 <body>
   <header>
     <h1>Tawsif Nadif</h1>
-    <p>Senior at Michigan State University | PhD Candidate</p>
+    <p>Senior in CS @ MSU | PhD Candidate in Machine Learning</p>
   </header>
 
-  <section>
-    <h2>About Me</h2>
-    <p>I’m a Computer Science senior at MSU with interests in machine learning, high-performance computing, and robotics. 
-    Currently preparing for PhD research in AI and systems.</p>
-  </section>
+  <div class="container">
+    <div class="card">
+      <h2>About Me</h2>
+      <p>I love building systems at the intersection of AI, robotics, and HPC. My long-term goal is to pursue 
+      research in scalable machine learning and autonomous systems.</p>
+    </div>
 
-  <section>
-    <h2>Projects</h2>
-    <ul>
-      <li><strong>Automated Tractor Autosteer</strong> – GNSS + Jetson Orin Nano based precision agriculture system.</li>
-      <li><strong>Sparty’s Boots</strong> – Logic-gate based puzzle game in C++/wxWidgets.</li>
-      <li><strong>Human Aesthetics in Vision Models</strong> – LoRA fine-tuning with diffusion models.</li>
-    </ul>
-  </section>
+    <div class="card">
+      <h2>Projects</h2>
+      <ul>
+        <li>🚜 Auto-Steering Tractor with GNSS + Jetson Orin</li>
+        <li>🎮 Sparty’s Boots C++ Game</li>
+        <li>🖼️ Aesthetics in Vision Models (LoRA + Diffusion)</li>
+      </ul>
+    </div>
 
-  <section>
-    <h2>Contact</h2>
-    <p>Email: <a href="mailto:tawsif@example.com">tawsif@example.com</a><br>
-    LinkedIn: <a href="https://linkedin.com/in/yourprofile">linkedin.com/in/yourprofile</a></p>
-  </section>
-
-  <footer>
-    <p>© 2025 Tawsif Nadif</p>
-  </footer>
+    <div class="card">
+      <h2>Contact</h2>
+      <p>Email: <a href="mailto:tawsif@example.com">tawsif@example.com</a></p>
+      <p>LinkedIn: <a href="https://linkedin.com/in/yourprofile">linkedin.com/in/yourprofile</a></p>
+      <p>GitHub: <a href="https://github.com/tawsifnadif">github.com/tawsifnadif</a></p>
+    </div>
+  </div>
 </body>
 </html>
