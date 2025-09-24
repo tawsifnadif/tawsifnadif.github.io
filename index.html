@@ -9,145 +9,137 @@
     :root{
       --bg:#0d1117;        /* page background */
       --panel:#161b22;     /* cards + sidebar */
-      --sidebar:#161b22;   /* same as panels for unity */
       --text:#c9d1d9;      /* primary text */
       --muted:#8b949e;     /* secondary text */
       --brand:#58a6ff;     /* link accent */
-      --brand2:#79c0ff;    /* lighter accent (used rarely) */
+      --brand2:#79c0ff;
       --border:#30363d;    /* borders */
       --shadow:0 12px 30px rgba(0,0,0,.35);
     }
+
     *{box-sizing:border-box}
-    html,body{margin:0;padding:0;background:var(--bg);color:var(--text);font-family:Inter,system-ui,-apple-system,"Segoe UI",Roboto,"Helvetica Neue",Arial}
-    a{color:var(--brand);text-decoration:none}
+    html,body{
+      margin:0; padding:0;
+      background:var(--bg); color:var(--text);
+      font-family:Inter,system-ui,-apple-system,"Segoe UI",Roboto,"Helvetica Neue",Arial
+    }
+    a{color:var(--brand); text-decoration:none}
     a:hover{text-decoration:underline}
 
     /* ===== LAYOUT ===== */
-    .layout{display:grid;grid-template-columns:280px 1fr;gap:28px;max-width:1200px;margin:0 auto;padding:28px}
-    @media (max-width:920px){.layout{grid-template-columns:1fr}}
+    .layout{
+      display:grid;
+      grid-template-columns:280px 1fr;
+      gap:28px;
+      max-width:1200px;
+      margin:0 auto;
+      padding:28px;
+    }
+    @media (max-width:920px){ .layout{ grid-template-columns:1fr } }
 
-    /* Sidebar */
+    /* Sidebar (single rule, sticky at very top) */
     .sidebar{
-      background: var(--panel);
+      background:var(--panel);
       border:1px solid var(--border);
       border-radius:18px;
       padding:22px;
       box-shadow:var(--shadow);
       position:sticky;
-      top:28px; /* keep columns aligned */
+      top:0;
       height:fit-content;
     }
-    .headshot{width:100%;max-width:220px;aspect-ratio:1/1;border-radius:14px;object-fit:cover;border:1px solid var(--border);box-shadow:var(--shadow);display:block;margin:0 auto 18px}
-    .nav{display:flex;flex-direction:column;gap:14px;margin-top:10px}
+    .headshot{
+      width:100%; max-width:220px; aspect-ratio:1/1;
+      border-radius:14px; object-fit:cover;
+      border:1px solid var(--border); box-shadow:var(--shadow);
+      display:block; margin:0 auto 18px;
+    }
+    .nav{ display:flex; flex-direction:column; gap:14px; margin-top:10px }
     .nav a{
-  display:block; text-align:center;
-  padding:10px 12px; border-radius:10px;
-  color:var(--text);
-  border:1px dashed var(--border);
-  background:rgba(255,255,255,0.02);
-  transition:background .15s ease, border-color .15s ease;
-}
-.nav a:hover{
-  border-color:var(--border);
-  background:#21262d;         /* soft, non-flashy hover */
-  text-decoration:none;
-}
-    
-.sidebar{
-  /* keep the rest the same */
-  position: sticky;
-  top: 0;               /* align with the top of the page */
-}
+      display:block; text-align:center; padding:10px 12px; border-radius:10px;
+      color:var(--text); border:1px dashed var(--border);
+      background:rgba(255,255,255,0.02);
+      transition:background .15s ease, border-color .15s ease;
+    }
+    .nav a:hover{ border-color:var(--border); background:#21262d; text-decoration:none }
 
-.main{
-  display: flex;
-  flex-direction: column;
-  gap: 32px;            /* spacing between cards */
-  padding-top: 0;       /* no extra offset */
-}
+    /* Main column */
+    .main{ padding-top:0 } /* no offset; lines up with sidebar */
 
-/* keep this — it creates the spacing between cards */
-#contentSections{
-  display: flex;
-  flex-direction: column;
-  gap: 32px;
-}
+    /* The stack of content cards */
+    #contentSections{
+      display:grid;
+      row-gap:32px;              /* ← space between ALL cards */
+      grid-auto-rows:min-content;
+    }
 
-/* optional: keeps anchor scroll from hiding under sticky sidebar */
-.card{ scroll-margin-top: 28px; }
+    /* Card look */
+    .card{
+      background:var(--panel);
+      border:1px solid var(--border);
+      border-radius:18px;
+      box-shadow:var(--shadow);
+      padding:22px;
+      scroll-margin-top:28px;    /* anchors won’t hide under sticky sidebar */
+    }
 
-    
-h1{ margin:0 0 6px; font-size:clamp(28px,4vw,40px); color:#e6edf3; }  /* slightly brighter than body */
-h2{ margin:0 0 12px; font-size:22px; color:#d0d7e2; }                 /* softer than h1, easy on dark */
-.hr {
-  height: 1px;
-  background-image: linear-gradient(
-    90deg,
-    transparent 0,
-    var(--muted) 50%,
-    transparent 100%
-  );
-  background-size: 16px 1px;
-  background-repeat: repeat-x;
-  opacity: 0.7; /* darker line (was .35) */
-  margin: 12px 0 16px;
-}
-    .muted{color:var(--muted)}
-    p{text-align:justify}
+    /* Headings & divider */
+    h1{ margin:0 0 6px; font-size:clamp(28px,4vw,40px); color:#e6edf3; }
+    h2{ margin:0 0 12px; font-size:22px; color:#d0d7e2; }
+    .hr{
+      height:1px;
+      background-image:linear-gradient(90deg,transparent 0,var(--muted) 50%,transparent 100%);
+      background-size:16px 1px; background-repeat:repeat-x;
+      opacity:.7; margin:12px 0 16px;
+    }
+    .muted{ color:var(--muted) }
+    p{ text-align:justify }
 
     /* Tags */
-    .row{display:flex;flex-wrap:wrap;gap:10px 20px;margin:6px 0}
-    .tag{border:1px solid var(--border);color:var(--muted);padding:6px 10px;border-radius:999px;font-size:13px;background:rgba(255,255,255,.02)}
+    .row{ display:flex; flex-wrap:wrap; gap:10px 20px; margin:6px 0 }
+    .tag{ border:1px solid var(--border); color:var(--muted); padding:6px 10px; border-radius:999px; font-size:13px; background:rgba(255,255,255,.02) }
 
-    /* Grid */
-    .grid{display:grid;grid-template-columns:1fr;gap:12px}
-    .grid-2{grid-template-columns:1fr 1fr}
-    @media (max-width:900px){.grid-2{grid-template-columns:1fr}}
-    .item{padding:14px;border:1px solid var(--border);border-radius:12px;background:linear-gradient(180deg,rgba(255,255,255,.03),rgba(255,255,255,0));}
-    .item h3{margin:0 0 6px;font-size:18px}
-    .meta{color:var(--muted);font-size:14px;margin-bottom:6px}
+    /* Two-column project grid */
+    .grid{ display:grid; grid-template-columns:1fr; gap:12px }
+    .grid-2{ grid-template-columns:1fr 1fr }
+    @media (max-width:900px){ .grid-2{ grid-template-columns:1fr } }
+    .item{ padding:14px; border:1px solid var(--border); border-radius:12px; background:linear-gradient(180deg,rgba(255,255,255,.03),rgba(255,255,255,0)); }
+    .item h3{ margin:0 0 6px; font-size:18px }
+    .meta{ color:var(--muted); font-size:14px; margin-bottom:6px }
 
     /* Awards/Experience rows */
-    .award-row{display:flex;justify-content:space-between;padding:6px 0;border-bottom:1px dashed var(--border);gap:16px}
-    .award-row .year{color:var(--muted);margin-left:20px;white-space:nowrap}
+    .award-row{ display:flex; justify-content:space-between; padding:6px 0; border-bottom:1px dashed var(--border); gap:16px }
+    .award-row .year{ color:var(--muted); margin-left:20px; white-space:nowrap }
 
-.highlight{ color: var(--brand); font-weight:400; }
+    /* Highlighted inline pill text (not bold) */
+    .highlight{ color:var(--brand); font-weight:400; }
 
-    /* Icon row */
-.icon-row{
-  display:flex; gap:16px; align-items:center; justify-content:center;
-}
-.icon-row a{
-  display:inline-flex; align-items:center; justify-content:center;
-  width:40px; height:40px; border-radius:12px;
-  border:1px solid var(--border);
-  background:#0f141b;                    /* neutral tile */
-  transition:transform .12s ease, background .12s ease, border-color .12s ease;
-}
-.icon{ width:22px; height:22px;
-/* neutral “on dark” look; works well with solid monochrome SVGs */
-  filter: invert(84%) sepia(6%) saturate(180%) hue-rotate(180deg) brightness(102%);
-}
+    /* Contact icons */
+    .icon-row{ display:flex; gap:16px; align-items:center; justify-content:center }
+    .icon-row a{
+      display:inline-flex; align-items:center; justify-content:center;
+      width:40px; height:40px; border-radius:12px;
+      border:1px solid var(--border); background:#0f141b;
+      transition:transform .12s ease, background .12s ease, border-color .12s ease;
+    }
+    .icon{ width:22px; height:22px;
+      filter:invert(84%) sepia(6%) saturate(180%) hue-rotate(180deg) brightness(102%);
+    }
+    .icon-row a:hover{
+      background:rgba(240,246,252,0.06); border-color:#3b4450; transform:translateY(-1px);
+    }
+    .icon-row a:hover .icon{
+      filter:invert(88%) sepia(6%) saturate(180%) hue-rotate(180deg) brightness(108%);
+    }
 
-/* Hover: lighter tile + tiny lift (very subtle, not flashy) */
-.icon-row a:hover{
-  background: rgba(240,246,252,0.06);    /* soft light */
-  border-color:#3b4450;
-  transform: translateY(-1px);
-}
-/* Keep the icon steady; optional slight brighten on hover */
-.icon-row a:hover .icon{
-  filter: invert(88%) sepia(6%) saturate(180%) hue-rotate(180deg) brightness(108%);
-}
+    /* Resume viewer (swaps into main area) */
+    #resumeViewer{ display:none }
+    .actions{ margin:4px 0 12px; text-align:right }
+    .actions a{ margin-left:8px; padding:6px 10px; font-size:13px; border-radius:8px; border:1px solid var(--border); color:var(--text); background:#0a1220; text-decoration:none }
+    .actions a.primary{ background:linear-gradient(135deg,var(--brand) 0%,var(--brand2) 100%); color:#001018; border:none; font-weight:600 }
+    .frame{ width:100%; height:calc(100vh - 120px); border:0; background:#111; border-radius:12px }
 
-    /* Resume viewer (right pane swap-in) */
-    #resumeViewer{display:none}
-    .actions{margin:4px 0 12px;text-align:right}
-    .actions a{margin-left:8px;padding:6px 10px;font-size:13px;border-radius:8px;border:1px solid var(--border);color:var(--text);background:#0a1220;text-decoration:none}
-    .actions a.primary{background:linear-gradient(135deg,var(--brand) 0%,var(--brand2) 100%);color:#001018;border:none;font-weight:600}
-    .frame{width:100%;height:calc(100vh - 120px);border:0;background:#111;border-radius:12px}
-
-    footer{text-align:center;color:var(--muted);padding:20px 0}
+    footer{ text-align:center; color:var(--muted); padding:20px 0 }
   </style>
 </head>
 <body>
@@ -168,7 +160,7 @@ h2{ margin:0 0 12px; font-size:22px; color:#d0d7e2; }                 /* softer 
 
     <!-- ===== MAIN ===== -->
     <main class="main">
-      <!-- Normal content -->
+      <!-- Normal content (cards) -->
       <div id="contentSections">
         <section id="home" class="card">
           <h1>Tawsif Nadif</h1>
@@ -278,7 +270,7 @@ h2{ margin:0 0 12px; font-size:22px; color:#d0d7e2; }                 /* softer 
         <footer>© <span id="year"></span> Tawsif Nadif</footer>
       </div>
 
-      <!-- Resume viewer -->
+      <!-- Resume viewer (hidden until Resume is clicked) -->
       <section id="resumeViewer" class="card">
         <div class="actions">
           <a href="assets/TAWSIF-RESUME.pdf" target="_blank" rel="noopener">Open in new tab</a>
@@ -299,41 +291,35 @@ h2{ margin:0 0 12px; font-size:22px; color:#d0d7e2; }                 /* softer 
     const sections   = document.getElementById('contentSections');
     const viewer     = document.getElementById('resumeViewer');
     const resumeLink = document.getElementById('resumeLink');
-    const homeLink   = document.getElementById('homeLink');
     const navLinks   = document.querySelectorAll('.nav a');
 
-    function showSections() {
-      viewer.style.display   = 'none';
-      sections.style.display = 'block';
+    function showSections(){
+      viewer.style.display = 'none';
+      sections.style.display = 'grid';    // keep the grid (with row-gap) active
+      window.scrollTo({ top: 0, behavior: 'smooth' });
     }
-
-    function showResume() {
+    function showResume(){
       sections.style.display = 'none';
-      viewer.style.display   = 'block';
-      const obj = document.getElementById('resumeObj');
+      viewer.style.display = 'block';
       // Force reload for Safari/Firefox so the PDF always appears
+      const obj = document.getElementById('resumeObj');
       obj.data = 'assets/TAWSIF-RESUME.pdf#toolbar=0&view=FitH&t=' + Date.now();
       window.scrollTo({ top: 0, behavior: 'smooth' });
     }
 
-    navLinks.forEach(link => {
-      if (link === resumeLink) {
-        link.addEventListener('click', (e) => {
+    navLinks.forEach(link=>{
+      const href = link.getAttribute('href');
+      if(href === '#resume'){
+        link.addEventListener('click', e=>{ e.preventDefault(); showResume(); });
+      }else{
+        link.addEventListener('click', e=>{
           e.preventDefault();
-          showResume();
-        });
-      } else {
-        link.addEventListener('click', (e) => {
-          e.preventDefault();
-          const hash = link.getAttribute('href'); // e.g., #projects
           showSections();
-          // Wait for sections to be visible, then scroll to the target
-          requestAnimationFrame(() => {
-            if (hash === '#home') {
-              window.scrollTo({ top: 0, behavior: 'smooth' });
-            } else {
-              const target = document.querySelector(hash);
-              if (target) target.scrollIntoView({ behavior: 'smooth', block: 'start' });
+          requestAnimationFrame(()=>{
+            if(href === '#home'){ window.scrollTo({ top: 0, behavior: 'smooth' }); }
+            else{
+              const target = document.querySelector(href);
+              if(target) target.scrollIntoView({ behavior:'smooth', block:'start' });
             }
           });
         });
