@@ -96,13 +96,34 @@ h2{ margin:0 0 12px; font-size:22px; color:#d0d7e2; }                 /* softer 
     .award-row{display:flex;justify-content:space-between;padding:6px 0;border-bottom:1px dashed var(--border);gap:16px}
     .award-row .year{color:var(--muted);margin-left:20px;white-space:nowrap}
 
-    .highlight{color:var(--brand);font-weight:400} /* cyan, not bold */
+.highlight{ color: var(--brand); font-weight:400; }
 
     /* Icon row */
-    .icon-row{display:flex;gap:16px;align-items:center;justify-content:center}
-    .icon-row a{display:inline-flex;align-items:center;justify-content:center;width:34px;height:34px;border-radius:10px;border:1px solid var(--border);background:#0a1220;transition:transform .15s ease, box-shadow .15s ease, background .15s ease}
-    .icon-row a:hover{transform:translateY(-2px);box-shadow:0 8px 18px rgba(0,0,0,.35);background:linear-gradient(135deg,var(--brand) 0%, var(--brand2) 100%)}
-    .icon{filter:invert(92%);width:22px;height:22px}
+.icon-row{
+  display:flex; gap:16px; align-items:center; justify-content:center;
+}
+.icon-row a{
+  display:inline-flex; align-items:center; justify-content:center;
+  width:40px; height:40px; border-radius:12px;
+  border:1px solid var(--border);
+  background:#0f141b;                    /* neutral tile */
+  transition:transform .12s ease, background .12s ease, border-color .12s ease;
+}
+.icon{ width:22px; height:22px;
+/* neutral “on dark” look; works well with solid monochrome SVGs */
+  filter: invert(84%) sepia(6%) saturate(180%) hue-rotate(180deg) brightness(102%);
+}
+
+/* Hover: lighter tile + tiny lift (very subtle, not flashy) */
+.icon-row a:hover{
+  background: rgba(240,246,252,0.06);    /* soft light */
+  border-color:#3b4450;
+  transform: translateY(-1px);
+}
+/* Keep the icon steady; optional slight brighten on hover */
+.icon-row a:hover .icon{
+  filter: invert(88%) sepia(6%) saturate(180%) hue-rotate(180deg) brightness(108%);
+}
 
     /* Resume viewer (right pane swap-in) */
     #resumeViewer{display:none}
