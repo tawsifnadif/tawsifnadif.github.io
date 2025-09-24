@@ -6,15 +6,15 @@
   <title>Tawsif Nadif – Portfolio</title>
   <style>
     /* ===== THEME ===== */
-    :root {
-      --bg:#1e1e1e;
-      --panel:#0e1424;
-      --sidebar:#0d1220;
-      --text:#e6eaf2;
-      --muted:#9aa7bd;
-      --brand:#22d3ee;
-      --brand2:#60a5fa;
-      --border:#1b2438;
+    :root{
+      --bg:#1e1e1e;           /* page background */
+      --panel:#0e1424;        /* cards */
+      --sidebar:#0d1220;      /* sidebar */
+      --text:#e6eaf2;         /* primary text */
+      --muted:#9aa7bd;        /* secondary text */
+      --brand:#22d3ee;        /* cyan accent */
+      --brand2:#60a5fa;       /* blue accent */
+      --border:#1b2438;       /* borders */
       --shadow:0 12px 30px rgba(0,0,0,.35);
     }
     *{box-sizing:border-box}
@@ -27,28 +27,35 @@
     @media (max-width:920px){.layout{grid-template-columns:1fr}}
 
     /* Sidebar */
-    .sidebar{background:linear-gradient(180deg,var(--sidebar),#0b1222);border:1px solid var(--border);border-radius:18px;padding:22px;box-shadow:var(--shadow);position:sticky;top:20px;height:fit-content}
+    .sidebar{
+      background:linear-gradient(180deg,var(--sidebar),#0b1222);
+      border:1px solid var(--border);
+      border-radius:18px;
+      padding:22px;
+      box-shadow:var(--shadow);
+      position:sticky;
+      top:0;                  /* align with main */
+      height:fit-content;
+    }
     .headshot{width:100%;max-width:220px;aspect-ratio:1/1;border-radius:14px;object-fit:cover;border:1px solid var(--border);box-shadow:var(--shadow);display:block;margin:0 auto 18px}
     .nav{display:flex;flex-direction:column;gap:14px;margin-top:10px}
     .nav a{display:block;padding:10px 12px;border-radius:10px;border:1px dashed var(--border);color:var(--text);text-align:center;background:rgba(255,255,255,0.02)}
     .nav a:hover{border-style:solid;background:rgba(34,211,238,0.06)}
 
     /* Main */
-    /* Main */
-    .main {
-      display: flex;
-      flex-direction: column;
-      gap: 32px;          /* more vertical spacing */
-      padding: 10px;      /* breathing room around content */
+    .main{
+      display:flex;
+      flex-direction:column;
+      gap:32px;        /* vertical spacing between boxes */
+      padding:0;       /* align with sidebar top */
     }
-    
-    .card {
-      background: var(--panel);
-      border: 1px solid var(--border);
-      border-radius: 18px;
-      box-shadow: var(--shadow);
-      padding: 22px;
-      margin-bottom: 12px; /* extra spacing under each card */
+    .card{
+      background:var(--panel);
+      border:1px solid var(--border);
+      border-radius:18px;
+      box-shadow:var(--shadow);
+      padding:22px;
+      margin:10px 0 12px;   /* extra breathing room */
     }
     h1{margin:0 0 6px;font-size:clamp(28px,4vw,40px)}
     h2{margin:0 0 12px;color:#c7d2fe;font-size:22px}
@@ -80,19 +87,19 @@
     .icon-row a:hover{transform:translateY(-2px);box-shadow:0 8px 18px rgba(0,0,0,.35);background:linear-gradient(135deg,var(--brand) 0%, var(--brand2) 100%)}
     .icon{filter:invert(92%);width:22px;height:22px}
 
-    /* Resume Viewer */
+    /* Resume viewer (right pane swap-in) */
     #resumeViewer{display:none}
-    .frame{width:100%;height:calc(100vh - 100px);border:0;background:#111;border-radius:12px}
-    .actions{margin:10px 0;text-align:right}
+    .actions{margin:4px 0 12px;text-align:right}
     .actions a{margin-left:8px;padding:6px 10px;font-size:13px;border-radius:8px;border:1px solid var(--border);color:var(--text);background:#0a1220;text-decoration:none}
     .actions a.primary{background:linear-gradient(135deg,var(--brand) 0%,var(--brand2) 100%);color:#001018;border:none;font-weight:600}
+    .frame{width:100%;height:calc(100vh - 120px);border:0;background:#111;border-radius:12px}
 
     footer{text-align:center;color:var(--muted);padding:20px 0}
   </style>
 </head>
 <body>
   <div class="layout">
-    <!-- Sidebar -->
+    <!-- ===== SIDEBAR ===== -->
     <aside class="sidebar">
       <img class="headshot" src="assets/headshot.jpg" alt="Tawsif Nadif" />
       <nav class="nav">
@@ -102,12 +109,13 @@
         <a href="#experience">Experience</a>
         <a href="#awards">Awards</a>
         <a href="#contact">Contact</a>
-        <a href="resume.html" id="resumeLink">Resume</a>
+        <a href="#resume" id="resumeLink">Resume</a>
       </nav>
     </aside>
 
-    <!-- Main Content -->
+    <!-- ===== MAIN ===== -->
     <main class="main">
+      <!-- Normal content (we toggle this off when showing Resume) -->
       <div id="contentSections">
         <!-- Home -->
         <section id="home" class="card">
@@ -126,7 +134,7 @@
           </div>
         </section>
 
-        <!-- Research -->
+        <!-- Research Interests -->
         <section id="research" class="card">
           <h2>Research Interests</h2>
           <div class="hr"></div>
@@ -156,7 +164,7 @@
             <div class="item">
               <h3>Website Defacement via ARP Poisoning & DNS Spoofing</h3>
               <div class="meta">Course Project · Jan 2025 – May 2025</div>
-              <p>Simulated ARP/DNS spoofing (Ettercap) to redirect victims to spoofed sites, demonstrating web defacement workflow.</p>
+              <p>Simulated ARP/DNS spoofing (Ettercap) to redirect victims to a locally hosted spoofed site (Apache2) demonstrating defacement workflow.</p>
             </div>
             <div class="item">
               <h3>Professional Website</h3>
@@ -171,7 +179,7 @@
           <h2>Experience</h2>
           <div class="hr"></div>
           <div class="award-row">
-            <span><strong>Research Assistant</strong>, <a href="https://www.egr.msu.edu/smarts/index.html" target="_blank">Smart Sensing Lab</a> – Michigan State University</span>
+            <span><strong>Research Assistant</strong>, <a href="https://www.egr.msu.edu/smarts/index.html" target="_blank" rel="noopener">Smart Sensing Lab</a> – Michigan State University</span>
             <span class="year">Mar 2025 – Present</span>
           </div>
           <div class="award-row">
@@ -210,7 +218,7 @@
           </div>
         </section>
 
-        <!-- Contact -->
+        <!-- Contact: icons centered, no header -->
         <section id="contact" class="card">
           <div class="icon-row">
             <a href="mailto:nadiftaw@msu.edu" title="Email"><img class="icon" src="assets/email.svg" alt="email"></a>
@@ -219,29 +227,30 @@
             <a href="https://discord.com/users/tawsif8950" title="Discord"><img class="icon" src="assets/discord.svg" alt="discord"></a>
           </div>
         </section>
-      </div>
 
-      <!-- Resume Viewer -->
-      <div id="resumeViewer" class="card">
+        <footer>© <span id="year"></span> Tawsif Nadif</footer>
+      </div><!-- /#contentSections -->
+
+      <!-- Resume viewer (hidden until Resume is clicked) -->
+      <section id="resumeViewer" class="card">
         <div class="actions">
-          <a href="assets/TAWSIF-RESUME.pdf" target="_blank">Open in new tab</a>
+          <a href="assets/TAWSIF-RESUME.pdf" target="_blank" rel="noopener">Open in new tab</a>
           <a class="primary" href="assets/TAWSIF-RESUME.pdf" download>Download PDF</a>
         </div>
-        <object id="resumeObj" data="assets/TAWSIF-RESUME.pdf#toolbar=0&view=FitH" type="application/pdf" class="frame">
-          <div class="fallback">
-            Your browser can’t display PDFs inline. 
-            <a href="assets/TAWSIF-RESUME.pdf" target="_blank">Open the resume</a>.
-          </div>
+        <object id="resumeObj" data="assets/TAWSIF-RESUME.pdf#toolbar=0&view=FitH" type="application/pdf" class="frame" aria-label="Tawsif Nadif Resume">
+          <p class="muted">Your browser can’t display PDFs inline.
+            <a href="assets/TAWSIF-RESUME.pdf" target="_blank" rel="noopener">Open the resume</a>.
+          </p>
         </object>
-      </div>
-
-      <footer>© <span id="year"></span> Tawsif Nadif</footer>
+      </section>
     </main>
   </div>
 
   <script>
+    // Footer year
     document.getElementById('year').textContent = new Date().getFullYear();
 
+    // Toggle logic
     const sections   = document.getElementById('contentSections');
     const viewer     = document.getElementById('resumeViewer');
     const resumeLink = document.getElementById('resumeLink');
@@ -250,16 +259,21 @@
     function showSections() {
       viewer.style.display   = 'none';
       sections.style.display = 'block';
+      window.scrollTo({ top: 0, behavior: 'smooth' });
     }
 
     function showResume() {
       sections.style.display = 'none';
       viewer.style.display   = 'block';
+
+      // Reload PDF each time (Safari fix)
       const obj = document.getElementById('resumeObj');
       obj.data = 'assets/TAWSIF-RESUME.pdf#toolbar=0&view=FitH&t=' + Date.now();
-      viewer.scrollIntoView({ behavior: 'smooth', block: 'start' });
+
+      window.scrollTo({ top: 0, behavior: 'smooth' });
     }
 
+    // Intercept sidebar clicks
     navLinks.forEach(link => {
       if (link === resumeLink) {
         link.addEventListener('click', (e) => {
@@ -268,7 +282,7 @@
         });
       } else {
         link.addEventListener('click', () => {
-          showSections();
+          showSections(); // ensure sections are visible for anchor scrolls
         });
       }
     });
