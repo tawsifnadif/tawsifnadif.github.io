@@ -34,8 +34,22 @@
     .nav a:hover{border-style:solid;background:rgba(34,211,238,0.06)}
 
     /* Main */
-    .main{display:flex;flex-direction:column;gap:22px}
-    .card{background:var(--panel);border:1px solid var(--border);border-radius:18px;box-shadow:var(--shadow);padding:22px}
+    /* Main */
+    .main {
+      display: flex;
+      flex-direction: column;
+      gap: 32px;          /* more vertical spacing */
+      padding: 10px;      /* breathing room around content */
+    }
+    
+    .card {
+      background: var(--panel);
+      border: 1px solid var(--border);
+      border-radius: 18px;
+      box-shadow: var(--shadow);
+      padding: 22px;
+      margin-bottom: 12px; /* extra spacing under each card */
+    }
     h1{margin:0 0 6px;font-size:clamp(28px,4vw,40px)}
     h2{margin:0 0 12px;color:#c7d2fe;font-size:22px}
     .hr{height:1px;background-image:linear-gradient(90deg,transparent 0,var(--muted) 50%,transparent 100%);background-size:16px 1px;background-repeat:repeat-x;opacity:.35;margin:12px 0 16px}
