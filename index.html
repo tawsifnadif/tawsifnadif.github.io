@@ -140,6 +140,74 @@
     .frame{ width:100%; height:calc(100vh - 120px); border:0; background:#111; border-radius:12px }
 
     footer{ text-align:center; color:var(--muted); padding:20px 0 }
+
+    /* ===== Mobile polish (phones & small tablets) ===== */
+@media (max-width: 760px) {
+  /* Layout: single column, tighter spacing */
+  .layout{
+    grid-template-columns: 1fr;
+    gap: 16px;
+    padding: 16px;
+  }
+
+  /* Sidebar becomes a compact header card (not sticky) */
+  .sidebar{
+    position: static;
+    padding: 14px;
+    border-radius: 14px;
+  }
+  .headshot{
+    max-width: 84px;
+    border-radius: 12px;
+    margin: 0 0 12px;        /* left align with nav */
+  }
+
+  /* Nav: two-wide, good tap targets */
+  .nav{
+    flex-direction: row;
+    flex-wrap: wrap;
+    gap: 8px;
+    margin-top: 8px;
+  }
+  .nav a{
+    flex: 1 1 calc(50% - 8px); /* two per row */
+    padding: 12px;
+    font-size: 15px;
+    border-radius: 10px;
+  }
+
+  /* Main cards: slightly tighter padding */
+  .card{
+    padding: 16px;
+    border-radius: 14px;
+    scroll-margin-top: 12px; /* anchor scroll offset on mobile */
+  }
+  #contentSections{
+    row-gap: 20px;           /* vertical space between cards */
+  }
+
+  /* Headings & text */
+  h1{ font-size: clamp(24px, 6vw, 30px); margin-bottom: 4px; }
+  h2{ font-size: 20px; margin-bottom: 10px; }
+  .row{ gap: 8px 12px; }
+  .tag{ font-size: 12px; padding: 5px 9px; }
+
+  /* Project grid: single column on phones */
+  .grid-2{ grid-template-columns: 1fr; }
+
+  /* Icons a touch smaller */
+  .icon-row a{ width: 36px; height: 36px; border-radius: 10px; }
+  .icon{ width: 20px; height: 20px; }
+
+  /* PDF viewer: a bit shorter below the top buttons */
+  .frame{ height: calc(100vh - 150px); }
+}
+
+/* Ultra small phones */
+@media (max-width: 360px){
+  .nav a{ flex-basis: 100%; }    /* 1 per row if super narrow */
+  .headshot{ max-width: 72px; }
+}
   </style>
 </head>
 <body>
