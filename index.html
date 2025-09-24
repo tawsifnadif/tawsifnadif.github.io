@@ -53,21 +53,20 @@
   text-decoration:none;
 }
 
-    /* Main */
-.main{
-  display:flex;
-  flex-direction:column;
-  gap:28px;              /* space between all cards */
-  padding-top:4px;       /* small top space so first card doesn’t stick */
+.main {
+  display: flex;
+  flex-direction: column;
+  gap: 32px;          /* consistent spacing between all cards */
+  padding-top: 16px;  /* breathing room at top */
 }
 
-.card{
+.card {
   background: var(--panel);
-  border:1px solid var(--border);
-  border-radius:18px;
-  box-shadow:var(--shadow);
-  padding:22px;
-  margin:0;              /* let gap handle spacing */
+  border: 1px solid var(--border);
+  border-radius: 18px;
+  box-shadow: var(--shadow);
+  padding: 22px;
+  margin: 0;          /* reset margins so only gap applies */
 }
     
 h1{ margin:0 0 6px; font-size:clamp(28px,4vw,40px); color:#e6edf3; }  /* slightly brighter than body */
