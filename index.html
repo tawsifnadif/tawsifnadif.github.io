@@ -7,14 +7,14 @@
   <style>
     /* ===== THEME ===== */
     :root{
-      --bg:#0b0f1a;           /* page background (dark grey) */
-      --panel:#11182d;        /* cards/header (dark blue to contrast bg) */
-      --sidebar:#0d1220;      /* sidebar */
-      --text:#e6eaf2;         /* primary text */
-      --muted:#9aa7bd;        /* secondary text */
-      --brand:#22d3ee;        /* cyan accent */
-      --brand2:#60a5fa;       /* blue accent */
-      --border:#1b2438;       /* borders */
+      --bg:#0d1117;        /* page background */
+      --panel:#161b22;     /* cards + sidebar */
+      --sidebar:#161b22;   /* same as panels for unity */
+      --text:#c9d1d9;      /* primary text */
+      --muted:#8b949e;     /* secondary text */
+      --brand:#58a6ff;     /* link accent */
+      --brand2:#79c0ff;    /* lighter accent (used rarely) */
+      --border:#30363d;    /* borders */
       --shadow:0 12px 30px rgba(0,0,0,.35);
     }
     *{box-sizing:border-box}
@@ -28,19 +28,30 @@
 
     /* Sidebar */
     .sidebar{
-      background:linear-gradient(180deg,var(--sidebar),#0b1222);
+      background: var(--panel);
       border:1px solid var(--border);
       border-radius:18px;
       padding:22px;
       box-shadow:var(--shadow);
       position:sticky;
-      top:28px;               /* match layout padding */
+      top:28px; /* keep columns aligned */
       height:fit-content;
     }
     .headshot{width:100%;max-width:220px;aspect-ratio:1/1;border-radius:14px;object-fit:cover;border:1px solid var(--border);box-shadow:var(--shadow);display:block;margin:0 auto 18px}
     .nav{display:flex;flex-direction:column;gap:14px;margin-top:10px}
-    .nav a{display:block;padding:10px 12px;border-radius:10px;border:1px dashed var(--border);color:var(--text);text-align:center;background:rgba(255,255,255,0.02)}
-    .nav a:hover{border-style:solid;background:rgba(34,211,238,0.06)}
+    .nav a{
+  display:block; text-align:center;
+  padding:10px 12px; border-radius:10px;
+  color:var(--text);
+  border:1px dashed var(--border);
+  background:rgba(255,255,255,0.02);
+  transition:background .15s ease, border-color .15s ease;
+}
+.nav a:hover{
+  border-color:var(--border);
+  background:#21262d;         /* soft, non-flashy hover */
+  text-decoration:none;
+}
 
     /* Main */
     .main{
@@ -49,19 +60,23 @@
       gap:32px;
       padding:0;
     }
-    .card{
-      background:var(--panel);
+   .card{
+      background: var(--panel);
       border:1px solid var(--border);
       border-radius:18px;
       box-shadow:var(--shadow);
       padding:22px;
-      margin:0; /* spacing controlled by .main gap */
-      /* Key: when anchors scroll here, align boxes with sticky sidebar */
-      scroll-margin-top:28px; 
+      margin:0;
+      scroll-margin-top:28px;
     }
-    h1{margin:0 0 6px;font-size:clamp(28px,4vw,40px)}
-    h2{margin:0 0 12px;color:#c7d2fe;font-size:22px}
-    .hr{height:1px;background-image:linear-gradient(90deg,transparent 0,var(--muted) 50%,transparent 100%);background-size:16px 1px;background-repeat:repeat-x;opacity:.35;margin:12px 0 16px}
+h1{ margin:0 0 6px; font-size:clamp(28px,4vw,40px); color:#e6edf3; }  /* slightly brighter than body */
+h2{ margin:0 0 12px; font-size:22px; color:#d0d7e2; }                 /* softer than h1, easy on dark */
+.hr{
+  height:1px;
+  background-image: linear-gradient(90deg, transparent 0, var(--border) 50%, transparent 100%);
+  background-size:16px 1px; background-repeat:repeat-x; opacity:.45;
+  margin:12px 0 16px;
+}
     .muted{color:var(--muted)}
     p{text-align:justify}
 
