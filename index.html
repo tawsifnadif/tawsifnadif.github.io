@@ -7,15 +7,15 @@
   <style>
     /* ===== THEME ===== */
     :root{
-      --bg:#0d1117;           /* page background (very dark grey) */
-      --panel:#161b22;        /* cards/header (slightly lighter grey) */
-      --sidebar:#161b22;      /* sidebar (same as panels for consistency) */
-      --text:#c9d1d9;         /* primary text (light grey) */
-      --muted:#8b949e;        /* secondary text */
-      --brand:#58a6ff;        /* GitHub blue accent */
-      --brand2:#1f6feb;       /* darker blue accent for hover/gradient */
-      --border:#30363d;       /* borders */
-      --shadow:0 12px 30px rgba(0,0,0,.35); /* subtle shadow */
+      --bg:#0b0f1a;           /* page background (dark grey) */
+      --panel:#11182d;        /* cards/header (dark blue to contrast bg) */
+      --sidebar:#0d1220;      /* sidebar */
+      --text:#e6eaf2;         /* primary text */
+      --muted:#9aa7bd;        /* secondary text */
+      --brand:#22d3ee;        /* cyan accent */
+      --brand2:#60a5fa;       /* blue accent */
+      --border:#1b2438;       /* borders */
+      --shadow:0 12px 30px rgba(0,0,0,.35);
     }
     *{box-sizing:border-box}
     html,body{margin:0;padding:0;background:var(--bg);color:var(--text);font-family:Inter,system-ui,-apple-system,"Segoe UI",Roboto,"Helvetica Neue",Arial}
@@ -34,7 +34,7 @@
       padding:22px;
       box-shadow:var(--shadow);
       position:sticky;
-      top:28px;               /* respects same top gap as layout */
+      top:28px;               /* match layout padding */
       height:fit-content;
     }
     .headshot{width:100%;max-width:220px;aspect-ratio:1/1;border-radius:14px;object-fit:cover;border:1px solid var(--border);box-shadow:var(--shadow);display:block;margin:0 auto 18px}
@@ -55,7 +55,9 @@
       border-radius:18px;
       box-shadow:var(--shadow);
       padding:22px;
-      margin:0; /* equal spacing controlled by .main gap */
+      margin:0; /* spacing controlled by .main gap */
+      /* Key: when anchors scroll here, align boxes with sticky sidebar */
+      scroll-margin-top:28px; 
     }
     h1{margin:0 0 6px;font-size:clamp(28px,4vw,40px)}
     h2{margin:0 0 12px;color:#c7d2fe;font-size:22px}
@@ -85,7 +87,7 @@
     .icon-row{display:flex;gap:16px;align-items:center;justify-content:center}
     .icon-row a{display:inline-flex;align-items:center;justify-content:center;width:34px;height:34px;border-radius:10px;border:1px solid var(--border);background:#0a1220;transition:transform .15s ease, box-shadow .15s ease, background .15s ease}
     .icon-row a:hover{transform:translateY(-2px);box-shadow:0 8px 18px rgba(0,0,0,.35);background:linear-gradient(135deg,var(--brand) 0%, var(--brand2) 100%)}
-    .icon{filter:invert(92%) sepia(100%) saturate(500%) hue-rotate(150deg);width:22px;height:22px}
+    .icon{filter:invert(92%);width:22px;height:22px}
 
     /* Resume viewer (right pane swap-in) */
     #resumeViewer{display:none}
@@ -103,7 +105,7 @@
     <aside class="sidebar">
       <img class="headshot" src="assets/headshot.jpg" alt="Tawsif Nadif" />
       <nav class="nav">
-        <a href="#home">Home</a>
+        <a href="#home" id="homeLink">Home</a>
         <a href="#research">Research</a>
         <a href="#projects">Projects</a>
         <a href="#experience">Experience</a>
@@ -225,7 +227,7 @@
         <footer>© <span id="year"></span> Tawsif Nadif</footer>
       </div>
 
-      <!-- Resume -->
+      <!-- Resume viewer -->
       <section id="resumeViewer" class="card">
         <div class="actions">
           <a href="assets/TAWSIF-RESUME.pdf" target="_blank" rel="noopener">Open in new tab</a>
@@ -246,18 +248,19 @@
     const sections   = document.getElementById('contentSections');
     const viewer     = document.getElementById('resumeViewer');
     const resumeLink = document.getElementById('resumeLink');
+    const homeLink   = document.getElementById('homeLink');
     const navLinks   = document.querySelectorAll('.nav a');
 
     function showSections() {
       viewer.style.display   = 'none';
       sections.style.display = 'block';
-      window.scrollTo({ top: 0, behavior: 'smooth' });
     }
 
     function showResume() {
       sections.style.display = 'none';
       viewer.style.display   = 'block';
       const obj = document.getElementById('resumeObj');
+      // Force reload for Safari/Firefox so the PDF always appears
       obj.data = 'assets/TAWSIF-RESUME.pdf#toolbar=0&view=FitH&t=' + Date.now();
       window.scrollTo({ top: 0, behavior: 'smooth' });
     }
@@ -269,8 +272,19 @@
           showResume();
         });
       } else {
-        link.addEventListener('click', () => {
+        link.addEventListener('click', (e) => {
+          e.preventDefault();
+          const hash = link.getAttribute('href'); // e.g., #projects
           showSections();
+          // Wait for sections to be visible, then scroll to the target
+          requestAnimationFrame(() => {
+            if (hash === '#home') {
+              window.scrollTo({ top: 0, behavior: 'smooth' });
+            } else {
+              const target = document.querySelector(hash);
+              if (target) target.scrollIntoView({ behavior: 'smooth', block: 'start' });
+            }
+          });
         });
       }
     });
