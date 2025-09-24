@@ -53,21 +53,29 @@
   text-decoration:none;
 }
     
-.main {
-  display: flex;
-  flex-direction: column;
-  gap: 32px;          /* consistent space between cards */
-  padding-top: 16px;  /* ensures the first card isn’t glued to top */
+.sidebar{
+  /* keep the rest the same */
+  position: sticky;
+  top: 0;               /* align with the top of the page */
 }
 
-.card {
-  background: var(--panel);
-  border: 1px solid var(--border);
-  border-radius: 18px;
-  box-shadow: var(--shadow);
-  padding: 22px;
-  margin: 0;          /* remove margin so only .main gap applies */
+.main{
+  display: flex;
+  flex-direction: column;
+  gap: 32px;            /* spacing between cards */
+  padding-top: 0;       /* no extra offset */
 }
+
+/* keep this — it creates the spacing between cards */
+#contentSections{
+  display: flex;
+  flex-direction: column;
+  gap: 32px;
+}
+
+/* optional: keeps anchor scroll from hiding under sticky sidebar */
+.card{ scroll-margin-top: 28px; }
+
     
 h1{ margin:0 0 6px; font-size:clamp(28px,4vw,40px); color:#e6edf3; }  /* slightly brighter than body */
 h2{ margin:0 0 12px; font-size:22px; color:#d0d7e2; }                 /* softer than h1, easy on dark */
