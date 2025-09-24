@@ -5,16 +5,16 @@
   <meta name="viewport" content="width=device-width, initial-scale=1" />
   <title>Tawsif Nadif – Portfolio</title>
   <style>
-    /* ===== THEME (Dark, calm, academic) ===== */
+    /* ===== THEME ===== */
     :root{
-      --bg:#1e1e1e;          /* background */
-      --panel:#141922;       /* card panels */
-      --sidebar:#121720;     /* sidebar */
-      --text:#e9eef6;        /* main text */
-      --muted:#9aa7bd;       /* secondary text */
-      --brand:#22d3ee;       /* cyan accent */
-      --brand2:#60a5fa;      /* blue accent */
-      --border:#242b37;      /* borders */
+      --bg:#0b0f1a;           /* page background */
+      --panel:#0e1424;        /* cards */
+      --sidebar:#0d1220;      /* sidebar */
+      --text:#e6eaf2;         /* primary text */
+      --muted:#9aa7bd;        /* secondary text */
+      --brand:#22d3ee;        /* cyan accent */
+      --brand2:#60a5fa;       /* blue accent */
+      --border:#1b2438;       /* borders */
       --shadow:0 12px 30px rgba(0,0,0,.35);
     }
     *{box-sizing:border-box}
@@ -24,55 +24,75 @@
 
     /* ===== LAYOUT ===== */
     .layout{display:grid;grid-template-columns:280px 1fr;gap:28px;max-width:1200px;margin:0 auto;padding:28px}
-    @media (max-width: 920px){.layout{grid-template-columns:1fr}}
+    @media (max-width:920px){.layout{grid-template-columns:1fr}}
 
     /* Sidebar */
-    .sidebar{background:linear-gradient(180deg,var(--sidebar),#0b1222);border:1px solid var(--border);border-radius:18px;padding:22px;box-shadow:var(--shadow);position:sticky;top:20px;height:fit-content}
+    .sidebar{
+      background:linear-gradient(180deg,var(--sidebar),#0b1222);
+      border:1px solid var(--border);
+      border-radius:18px;
+      padding:22px;
+      box-shadow:var(--shadow);
+      position:sticky;
+      top:0;                  /* align with main */
+      height:fit-content;
+    }
     .headshot{width:100%;max-width:220px;aspect-ratio:1/1;border-radius:14px;object-fit:cover;border:1px solid var(--border);box-shadow:var(--shadow);display:block;margin:0 auto 18px}
     .nav{display:flex;flex-direction:column;gap:14px;margin-top:10px}
     .nav a{display:block;padding:10px 12px;border-radius:10px;border:1px dashed var(--border);color:var(--text);text-align:center;background:rgba(255,255,255,0.02)}
     .nav a:hover{border-style:solid;background:rgba(34,211,238,0.06)}
 
     /* Main */
-    .main{display:flex;flex-direction:column;gap:24px}
-    .card{background:var(--panel);border:1px solid var(--border);border-radius:18px;box-shadow:var(--shadow);padding:22px}
-    h1{margin:0 0 6px;font-size:clamp(28px,4vw,40px);color:#eef2f9}
-    h2{margin:0 0 12px;color:#b8c7ff;font-size:22px}
+    .main{
+      display:flex;
+      flex-direction:column;
+      gap:32px;        /* vertical spacing between boxes */
+      padding:0;       /* align with sidebar top */
+    }
+    .card{
+      background:var(--panel);
+      border:1px solid var(--border);
+      border-radius:18px;
+      box-shadow:var(--shadow);
+      padding:22px;
+      margin:10px 0 12px;   /* extra breathing room */
+    }
+    h1{margin:0 0 6px;font-size:clamp(28px,4vw,40px)}
+    h2{margin:0 0 12px;color:#c7d2fe;font-size:22px}
     .hr{height:1px;background-image:linear-gradient(90deg,transparent 0,var(--muted) 50%,transparent 100%);background-size:16px 1px;background-repeat:repeat-x;opacity:.35;margin:12px 0 16px}
     .muted{color:var(--muted)}
+    p{text-align:justify}
 
-    /* Meta rows */
+    /* Tags */
     .row{display:flex;flex-wrap:wrap;gap:10px 20px;margin:6px 0}
     .tag{border:1px solid var(--border);color:var(--muted);padding:6px 10px;border-radius:999px;font-size:13px;background:rgba(255,255,255,.02)}
 
-    /* Grid lists */
+    /* Grid */
     .grid{display:grid;grid-template-columns:1fr;gap:12px}
-    .grid-2{grid-template-columns:1fr 1fr;gap:16px}
+    .grid-2{grid-template-columns:1fr 1fr}
     @media (max-width:900px){.grid-2{grid-template-columns:1fr}}
-    .item{padding:14px;border:1px solid var(--border);border-radius:12px;background:linear-gradient(180deg,rgba(255,255,255,.03),rgba(255,255,255,0))}
+    .item{padding:14px;border:1px solid var(--border);border-radius:12px;background:linear-gradient(180deg,rgba(255,255,255,.03),rgba(255,255,255,0));}
     .item h3{margin:0 0 6px;font-size:18px}
     .meta{color:var(--muted);font-size:14px;margin-bottom:6px}
 
-    /* Icon row with tint */
-    .icon-row{display:flex;gap:16px;align-items:center;justify-content:center}
-    .icon-swatch{
-      width:22px;height:22px;display:inline-block;
-      background-color: var(--brand);
-      -webkit-mask: var(--icon) no-repeat center / contain;
-              mask: var(--icon) no-repeat center / contain;
-    }
-    .icon-row a{display:inline-flex;align-items:center;justify-content:center;width:40px;height:40px;border-radius:10px;border:1px solid var(--border);background:#0a1220;transition:transform .15s ease, box-shadow .15s ease, background .15s ease}
-    .icon-row a:hover{transform:translateY(-2px);box-shadow:0 8px 18px rgba(0,0,0,.35);background:linear-gradient(135deg,var(--brand) 0%, var(--brand2) 100%)}
-    .icon-row a:hover .icon-swatch{background:linear-gradient(135deg, var(--brand) 0%, var(--brand2) 100%)}
-
-    /* Right-aligned year rows */
-    .award-row{
-      display:flex;justify-content:space-between;padding:6px 0;
-      border-bottom:1px dashed var(--border);gap:16px;
-    }
+    /* Awards/Experience rows */
+    .award-row{display:flex;justify-content:space-between;padding:6px 0;border-bottom:1px dashed var(--border);gap:16px}
     .award-row .year{color:var(--muted);margin-left:20px;white-space:nowrap}
 
-    .highlight{color:var(--brand);font-weight:normal}
+    .highlight{color:var(--brand);font-weight:600}
+
+    /* Icon row */
+    .icon-row{display:flex;gap:16px;align-items:center;justify-content:center}
+    .icon-row a{display:inline-flex;align-items:center;justify-content:center;width:34px;height:34px;border-radius:10px;border:1px solid var(--border);background:#0a1220;transition:transform .15s ease, box-shadow .15s ease, background .15s ease}
+    .icon-row a:hover{transform:translateY(-2px);box-shadow:0 8px 18px rgba(0,0,0,.35);background:linear-gradient(135deg,var(--brand) 0%, var(--brand2) 100%)}
+    .icon{filter:invert(92%);width:22px;height:22px}
+
+    /* Resume viewer (right pane swap-in) */
+    #resumeViewer{display:none}
+    .actions{margin:4px 0 12px;text-align:right}
+    .actions a{margin-left:8px;padding:6px 10px;font-size:13px;border-radius:8px;border:1px solid var(--border);color:var(--text);background:#0a1220;text-decoration:none}
+    .actions a.primary{background:linear-gradient(135deg,var(--brand) 0%,var(--brand2) 100%);color:#001018;border:none;font-weight:600}
+    .frame{width:100%;height:calc(100vh - 120px);border:0;background:#111;border-radius:12px}
 
     footer{text-align:center;color:var(--muted);padding:20px 0}
   </style>
@@ -89,105 +109,183 @@
         <a href="#experience">Experience</a>
         <a href="#awards">Awards</a>
         <a href="#contact">Contact</a>
-        <a href="resume.html">Resume</a>
+        <a href="#resume" id="resumeLink">Resume</a>
       </nav>
     </aside>
 
     <!-- ===== MAIN ===== -->
     <main class="main">
-      <!-- Home -->
-      <section id="home" class="card">
-        <h1>Tawsif Nadif</h1>
-        <div class="row muted">Senior, Computer Science @ Michigan State University • PhD Candidate</div>
-        <div class="hr"></div>
-        <p style="text-align: justify;">
-          My work spans machine learning, computer vision, robotics, and high-performance computing, with projects ranging from autonomous tractors to human-aligned generative models. I also bring experience as a Teaching Assistant and Resident Assistant, mentoring and leading students. I am currently seeking <span class="highlight">Ph.D. positions for Fall 2026</span> to advance research in AI, perception, and robotics.
-        </p>
-        <div class="row">
-          <span class="tag">Machine Learning</span>
-          <span class="tag">Computer Vision</span>
-          <span class="tag">Robotics</span>
-          <span class="tag">High-Performance Computing</span>
-          <span class="tag">Python · C/C++ · PyTorch</span>
+      <!-- Normal content (we toggle this off when showing Resume) -->
+      <div id="contentSections">
+        <!-- Home -->
+        <section id="home" class="card">
+          <h1>Tawsif Nadif</h1>
+          <div class="row muted">Senior, Computer Science @ Michigan State University • PhD Candidate</div>
+          <div class="hr"></div>
+          <p>
+            My work spans machine learning, computer vision, robotics, and high-performance computing, with projects ranging from autonomous tractors to human-aligned generative models. I also bring experience as a Teaching Assistant and Resident Assistant, mentoring and leading students. I am currently seeking <span class="highlight">Ph.D. positions for Fall 2026</span> to advance research in AI, perception, and robotics.
+          </p>
+          <div class="row">
+            <span class="tag">Machine Learning</span>
+            <span class="tag">Computer Vision</span>
+            <span class="tag">Robotics</span>
+            <span class="tag">High-Performance Computing</span>
+            <span class="tag">Python · C/C++ · PyTorch</span>
+          </div>
+        </section>
+
+        <!-- Research Interests -->
+        <section id="research" class="card">
+          <h2>Research Interests</h2>
+          <div class="hr"></div>
+          <p>I am interested in robotics, autonomous vehicles, and artificial intelligence, with a focus on building scalable and reliable machine learning models for real-world systems. My work emphasizes GNSS-guided autonomy, perception in robotics, and human-in-the-loop AI. I also explore efficient training methods, trustworthy ML, and high-performance computing for intelligent systems.</p>
+        </section>
+
+        <!-- Projects -->
+        <section id="projects" class="card">
+          <h2>Projects</h2>
+          <div class="hr"></div>
+          <div class="grid grid-2">
+            <div class="item">
+              <h3>Automated Tractor: Auto-Steering & Crop Row Detection</h3>
+              <div class="meta">Research Project · Mar 2025 – Present</div>
+              <p>Built auto-steer with RTK GNSS, IMU, Teensy, and Cytron driver; developed crop-row detection with CNNs; integrated sensing, vision, and control on a custom PCB for precision agriculture.</p>
+            </div>
+            <div class="item">
+              <h3>Sparty’s Boots</h3>
+              <div class="meta">Course Project · Aug 2024 – Dec 2024</div>
+              <p>2D puzzle game in C++/wxWidgets with logic-gate mechanics, sensor inputs, and conveyor-based interactions.</p>
+            </div>
+            <div class="item">
+              <h3>Integrating Human Aesthetics into Vision Models</h3>
+              <div class="meta">Course Project · Jan 2025 – May 2025</div>
+              <p>Comparative preference learning pipeline; LoRA-tuned diffusion with VLM-guided prompts to align outputs with human aesthetic judgments.</p>
+            </div>
+            <div class="item">
+              <h3>Website Defacement via ARP Poisoning & DNS Spoofing</h3>
+              <div class="meta">Course Project · Jan 2025 – May 2025</div>
+              <p>Simulated ARP/DNS spoofing (Ettercap) to redirect victims to a locally hosted spoofed site (Apache2) demonstrating defacement workflow.</p>
+            </div>
+            <div class="item">
+              <h3>Professional Website</h3>
+              <div class="meta">Course Project · Aug 2024 – Dec 2024</div>
+              <p>Responsive portfolio with HTML/CSS/JS, interactive elements, and a functional piano app with sound mapping.</p>
+            </div>
+          </div>
+        </section>
+
+        <!-- Experience -->
+        <section id="experience" class="card">
+          <h2>Experience</h2>
+          <div class="hr"></div>
+          <div class="award-row">
+            <span><strong>Research Assistant</strong>, <a href="https://www.egr.msu.edu/smarts/index.html" target="_blank" rel="noopener">Smart Sensing Lab</a> – Michigan State University</span>
+            <span class="year">Mar 2025 – Present</span>
+          </div>
+          <div class="award-row">
+            <span><strong>Teaching Assistant</strong>, MTH 314 – Matrix Algebra</span>
+            <span class="year">Aug 2024 – Present</span>
+          </div>
+          <div class="award-row">
+            <span><strong>Teaching Assistant</strong>, CSE 102 – Algorithmic Thinking and Programming</span>
+            <span class="year">Aug 2023 – May 2025</span>
+          </div>
+          <div class="award-row">
+            <span><strong>Teaching Assistant</strong>, MTH 103 – College Algebra</span>
+            <span class="year">Aug 2025 – Present</span>
+          </div>
+          <div class="award-row">
+            <span><strong>Resident Assistant</strong>, Shaw Hall – Michigan State University</span>
+            <span class="year">Aug 2025 – Present</span>
+          </div>
+        </section>
+
+        <!-- Awards -->
+        <section id="awards" class="card">
+          <h2>Awards & Honors</h2>
+          <div class="hr"></div>
+          <div class="award-row">
+            <span>#YouAreWelcomeHere Scholarship</span>
+            <span class="year">2022</span>
+          </div>
+          <div class="award-row">
+            <span>Presidential Study Abroad Scholarship</span>
+            <span class="year">2022</span>
+          </div>
+          <div class="award-row">
+            <span>Dean’s List – All Semesters</span>
+            <span class="year">2022–Present</span>
+          </div>
+        </section>
+
+        <!-- Contact: icons centered, no header -->
+        <section id="contact" class="card">
+          <div class="icon-row">
+            <a href="mailto:nadiftaw@msu.edu" title="Email"><img class="icon" src="assets/email.svg" alt="email"></a>
+            <a href="https://github.com/tawsifnadif" title="GitHub"><img class="icon" src="assets/github.svg" alt="github"></a>
+            <a href="https://linkedin.com/in/tawsif-nadif" title="LinkedIn"><img class="icon" src="assets/linkedin.svg" alt="linkedin"></a>
+            <a href="https://discord.com/users/tawsif8950" title="Discord"><img class="icon" src="assets/discord.svg" alt="discord"></a>
+          </div>
+        </section>
+
+        <footer>© <span id="year"></span> Tawsif Nadif</footer>
+      </div><!-- /#contentSections -->
+
+      <!-- Resume viewer (hidden until Resume is clicked) -->
+      <section id="resumeViewer" class="card">
+        <div class="actions">
+          <a href="assets/TAWSIF-RESUME.pdf" target="_blank" rel="noopener">Open in new tab</a>
+          <a class="primary" href="assets/TAWSIF-RESUME.pdf" download>Download PDF</a>
         </div>
+        <object id="resumeObj" data="assets/TAWSIF-RESUME.pdf#toolbar=0&view=FitH" type="application/pdf" class="frame" aria-label="Tawsif Nadif Resume">
+          <p class="muted">Your browser can’t display PDFs inline.
+            <a href="assets/TAWSIF-RESUME.pdf" target="_blank" rel="noopener">Open the resume</a>.
+          </p>
+        </object>
       </section>
-
-      <!-- Research -->
-      <section id="research" class="card">
-        <h2>Research Interests</h2>
-        <div class="hr"></div>
-        <p style="text-align: justify;">I am interested in robotics, autonomous vehicles, and artificial intelligence, with a focus on building scalable and reliable machine learning models for real-world systems. My work emphasizes GNSS-guided autonomy, perception in robotics, and human-in-the-loop AI. I also explore efficient training methods, trustworthy ML, and high-performance computing for intelligent systems.</p>
-      </section>
-
-      <!-- Projects -->
-      <section id="projects" class="card">
-        <h2>Projects</h2>
-        <div class="hr"></div>
-        <div class="grid grid-2">
-          <div class="item">
-            <h3>Automated Tractor: Auto-Steering & Crop Row Detection</h3>
-            <div class="meta">Research Project · Mar 2025 – Present</div>
-            <p style="text-align: justify;">Built auto-steer with RTK GNSS, IMU, Teensy, and Cytron driver; developed crop-row detection with CNNs; integrated sensing, vision, and control on a custom PCB for precision agriculture.</p>
-          </div>
-          <div class="item">
-            <h3>Sparty’s Boots</h3>
-            <div class="meta">Course Project · Aug 2024 – Dec 2024</div>
-            <p style="text-align: justify;">2D puzzle game in C++/wxWidgets with logic-gate mechanics, sensor inputs, and conveyor-based interactions with custom rendering and timeline.</p>
-          </div>
-          <div class="item">
-            <h3>Integrating Human Aesthetics into Vision Models</h3>
-            <div class="meta">Course Project · Jan 2025 – May 2025</div>
-            <p style="text-align: justify;">Comparative preference learning pipeline; LoRA-tuned diffusion with VLM-guided prompts to align outputs with human aesthetic judgments.</p>
-          </div>
-          <div class="item">
-            <h3>Website Defacement via ARP Poisoning & DNS Spoofing</h3>
-            <div class="meta">Course Project · Jan 2025 – May 2025</div>
-            <p style="text-align: justify;">Simulated ARP/DNS spoofing (Ettercap) to redirect a victim to a locally hosted spoofed site (Apache2) demonstrating defacement workflow.</p>
-          </div>
-          <div class="item">
-            <h3>Professional Website</h3>
-            <div class="meta">Course Project · Aug 2024 – Dec 2024</div>
-            <p style="text-align: justify;">Responsive portfolio with HTML/CSS/JS, interactive elements, and a functional piano app with event listeners and sound mapping.</p>
-          </div>
-        </div>
-      </section>
-
-      <!-- Experience -->
-      <section id="experience" class="card">
-        <h2>Experience</h2>
-        <div class="hr"></div>
-        <div class="award-row">
-          <span><strong>Research Assistant</strong>, <a href="https://www.egr.msu.edu/smarts/index.html" target="_blank">Smart Sensing Lab</a> – Michigan State University</span>
-          <span class="year">Mar 2025 – Present</span>
-        </div>
-        <div class="award-row"><span><strong>Teaching Assistant</strong>, MTH 314 – Matrix Algebra</span><span class="year">Aug 2024 – Present</span></div>
-        <div class="award-row"><span><strong>Teaching Assistant</strong>, CSE 102 – Algorithmic Thinking and Programming</span><span class="year">Aug 2023 – May 2025</span></div>
-        <div class="award-row"><span><strong>Teaching Assistant</strong>, MTH 103 – College Algebra</span><span class="year">Aug 2025 – Present</span></div>
-        <div class="award-row"><span><strong>Resident Assistant</strong>, Shaw Hall – Michigan State University</span><span class="year">Aug 2025 – Present</span></div>
-      </section>
-
-      <!-- Awards -->
-      <section id="awards" class="card">
-        <h2>Awards & Honors</h2>
-        <div class="hr"></div>
-        <div class="award-row"><span>#YouAreWelcomeHere Scholarship</span><span class="year">2022</span></div>
-        <div class="award-row"><span>Presidential Study Abroad Scholarship</span><span class="year">2022</span></div>
-        <div class="award-row"><span>Dean’s List – All Semesters</span><span class="year">2022–Present</span></div>
-      </section>
-
-      <!-- Contact -->
-      <section id="contact" class="card">
-        <div class="icon-row">
-          <a href="mailto:nadiftaw@msu.edu" title="Email"><span class="icon-swatch" style="--icon:url('assets/email.svg')"></span></a>
-          <a href="https://github.com/tawsifnadif" title="GitHub"><span class="icon-swatch" style="--icon:url('assets/github.svg')"></span></a>
-          <a href="https://linkedin.com/in/tawsif-nadif" title="LinkedIn"><span class="icon-swatch" style="--icon:url('assets/linkedin.svg')"></span></a>
-          <a href="https://discord.com/users/tawsif8950" title="Discord"><span class="icon-swatch" style="--icon:url('assets/discord.svg')"></span></a>
-        </div>
-      </section>
-
-      <footer>© <span id="year"></span> Tawsif Nadif</footer>
     </main>
   </div>
-  <script>document.getElementById('year').textContent=new Date().getFullYear()</script>
+
+  <script>
+    // Footer year
+    document.getElementById('year').textContent = new Date().getFullYear();
+
+    // Toggle logic
+    const sections   = document.getElementById('contentSections');
+    const viewer     = document.getElementById('resumeViewer');
+    const resumeLink = document.getElementById('resumeLink');
+    const navLinks   = document.querySelectorAll('.nav a');
+
+    function showSections() {
+      viewer.style.display   = 'none';
+      sections.style.display = 'block';
+      window.scrollTo({ top: 0, behavior: 'smooth' });
+    }
+
+    function showResume() {
+      sections.style.display = 'none';
+      viewer.style.display   = 'block';
+
+      // Reload PDF each time (Safari fix)
+      const obj = document.getElementById('resumeObj');
+      obj.data = 'assets/TAWSIF-RESUME.pdf#toolbar=0&view=FitH&t=' + Date.now();
+
+      window.scrollTo({ top: 0, behavior: 'smooth' });
+    }
+
+    // Intercept sidebar clicks
+    navLinks.forEach(link => {
+      if (link === resumeLink) {
+        link.addEventListener('click', (e) => {
+          e.preventDefault();
+          showResume();
+        });
+      } else {
+        link.addEventListener('click', () => {
+          showSections(); // ensure sections are visible for anchor scrolls
+        });
+      }
+    });
+  </script>
 </body>
 </html>
