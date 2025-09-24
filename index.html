@@ -7,8 +7,8 @@
   <style>
     /* ===== THEME ===== */
     :root{
-      --bg:#0b0f1a;           /* page background */
-      --panel:#0e1424;        /* cards */
+      --bg:#0b0f1a;           /* page background (dark grey) */
+      --panel:#11182d;        /* cards/header (dark blue to contrast bg) */
       --sidebar:#0d1220;      /* sidebar */
       --text:#e6eaf2;         /* primary text */
       --muted:#9aa7bd;        /* secondary text */
@@ -34,7 +34,7 @@
       padding:22px;
       box-shadow:var(--shadow);
       position:sticky;
-      top:0;                  /* align with main */
+      top:28px;               /* respects same top gap as layout */
       height:fit-content;
     }
     .headshot{width:100%;max-width:220px;aspect-ratio:1/1;border-radius:14px;object-fit:cover;border:1px solid var(--border);box-shadow:var(--shadow);display:block;margin:0 auto 18px}
@@ -46,8 +46,8 @@
     .main{
       display:flex;
       flex-direction:column;
-      gap:32px;        /* vertical spacing between boxes */
-      padding:0;       /* align with sidebar top */
+      gap:32px;
+      padding:0;
     }
     .card{
       background:var(--panel);
@@ -55,7 +55,7 @@
       border-radius:18px;
       box-shadow:var(--shadow);
       padding:22px;
-      margin:10px 0 12px;   /* extra breathing room */
+      margin:0; /* equal spacing controlled by .main gap */
     }
     h1{margin:0 0 6px;font-size:clamp(28px,4vw,40px)}
     h2{margin:0 0 12px;color:#c7d2fe;font-size:22px}
@@ -79,13 +79,13 @@
     .award-row{display:flex;justify-content:space-between;padding:6px 0;border-bottom:1px dashed var(--border);gap:16px}
     .award-row .year{color:var(--muted);margin-left:20px;white-space:nowrap}
 
-    .highlight{color:var(--brand);font-weight:600}
+    .highlight{color:var(--brand);font-weight:400} /* cyan, not bold */
 
     /* Icon row */
     .icon-row{display:flex;gap:16px;align-items:center;justify-content:center}
     .icon-row a{display:inline-flex;align-items:center;justify-content:center;width:34px;height:34px;border-radius:10px;border:1px solid var(--border);background:#0a1220;transition:transform .15s ease, box-shadow .15s ease, background .15s ease}
     .icon-row a:hover{transform:translateY(-2px);box-shadow:0 8px 18px rgba(0,0,0,.35);background:linear-gradient(135deg,var(--brand) 0%, var(--brand2) 100%)}
-    .icon{filter:invert(92%);width:22px;height:22px}
+    .icon{filter:invert(92%) sepia(100%) saturate(500%) hue-rotate(150deg);width:22px;height:22px}
 
     /* Resume viewer (right pane swap-in) */
     #resumeViewer{display:none}
@@ -115,9 +115,8 @@
 
     <!-- ===== MAIN ===== -->
     <main class="main">
-      <!-- Normal content (we toggle this off when showing Resume) -->
+      <!-- Normal content -->
       <div id="contentSections">
-        <!-- Home -->
         <section id="home" class="card">
           <h1>Tawsif Nadif</h1>
           <div class="row muted">Senior, Computer Science @ Michigan State University • PhD Candidate</div>
@@ -134,14 +133,12 @@
           </div>
         </section>
 
-        <!-- Research Interests -->
         <section id="research" class="card">
           <h2>Research Interests</h2>
           <div class="hr"></div>
           <p>I am interested in robotics, autonomous vehicles, and artificial intelligence, with a focus on building scalable and reliable machine learning models for real-world systems. My work emphasizes GNSS-guided autonomy, perception in robotics, and human-in-the-loop AI. I also explore efficient training methods, trustworthy ML, and high-performance computing for intelligent systems.</p>
         </section>
 
-        <!-- Projects -->
         <section id="projects" class="card">
           <h2>Projects</h2>
           <div class="hr"></div>
@@ -174,7 +171,6 @@
           </div>
         </section>
 
-        <!-- Experience -->
         <section id="experience" class="card">
           <h2>Experience</h2>
           <div class="hr"></div>
@@ -200,7 +196,6 @@
           </div>
         </section>
 
-        <!-- Awards -->
         <section id="awards" class="card">
           <h2>Awards & Honors</h2>
           <div class="hr"></div>
@@ -218,7 +213,6 @@
           </div>
         </section>
 
-        <!-- Contact: icons centered, no header -->
         <section id="contact" class="card">
           <div class="icon-row">
             <a href="mailto:nadiftaw@msu.edu" title="Email"><img class="icon" src="assets/email.svg" alt="email"></a>
@@ -229,9 +223,9 @@
         </section>
 
         <footer>© <span id="year"></span> Tawsif Nadif</footer>
-      </div><!-- /#contentSections -->
+      </div>
 
-      <!-- Resume viewer (hidden until Resume is clicked) -->
+      <!-- Resume -->
       <section id="resumeViewer" class="card">
         <div class="actions">
           <a href="assets/TAWSIF-RESUME.pdf" target="_blank" rel="noopener">Open in new tab</a>
@@ -247,10 +241,8 @@
   </div>
 
   <script>
-    // Footer year
     document.getElementById('year').textContent = new Date().getFullYear();
 
-    // Toggle logic
     const sections   = document.getElementById('contentSections');
     const viewer     = document.getElementById('resumeViewer');
     const resumeLink = document.getElementById('resumeLink');
@@ -265,15 +257,11 @@
     function showResume() {
       sections.style.display = 'none';
       viewer.style.display   = 'block';
-
-      // Reload PDF each time (Safari fix)
       const obj = document.getElementById('resumeObj');
       obj.data = 'assets/TAWSIF-RESUME.pdf#toolbar=0&view=FitH&t=' + Date.now();
-
       window.scrollTo({ top: 0, behavior: 'smooth' });
     }
 
-    // Intercept sidebar clicks
     navLinks.forEach(link => {
       if (link === resumeLink) {
         link.addEventListener('click', (e) => {
@@ -282,7 +270,7 @@
         });
       } else {
         link.addEventListener('click', () => {
-          showSections(); // ensure sections are visible for anchor scrolls
+          showSections();
         });
       }
     });
